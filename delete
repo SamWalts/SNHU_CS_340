@@ -1,0 +1,10 @@
+from pymongo import MongoClient
+from bson.objectid import ObjectId
+
+# Test connection
+try:
+    client = MongoClient('mongodb://localhost:27017/')
+    db = client['AAC']
+    print("Connection Successful")
+except Exception as e:
+    print(f"An error occurred: {e}")

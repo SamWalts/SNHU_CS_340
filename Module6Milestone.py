@@ -27,17 +27,21 @@ class AnimalShelter(object):
         #
         #USER = 'aacuser'
         #PASS = 'SNHU1234'
-        HOST = 'nv-desktop-services.apporto.com'
-        PORT = 31140
+        HOST = 'localhost'
+        PORT = 27017
         DB = 'AAC'
         COL = 'animals'
         #
         # Initialize Connection
         #
-        self.client = MongoClient('mongodb://%s:%s@%s:%d' % (USER,PASS,HOST,PORT))
-        self.database = self.client['%s' % (DB)]
-        self.collection = self.database['%s' % (COL)]
-        print("Connection Successful")
+        try:
+            self.client = MongoClient('mongodb://%s:%s@%s:%d' % (USER,PASS,HOST,PORT))
+            self.database = self.client['%s' % (DB)]
+            self.collection = self.database['%s' % (COL)]
+            print("Connection Successful")
+        except Exception as e:
+            print("Connection Unsuccessful")
+            raise Exception(f"Error occured: {e}")
 
 # Complete this create method to implement the C in CRUD.
     def create(self, data):
@@ -77,3 +81,5 @@ class AnimalShelter(object):
         else:
             raise Exception("Nothing to delete, becuase delete parameter is empty.")
             
+
+    '{"t":{"$date":"2024-09-26T18:01:27.396-05:00"},"s":"I",  "c":"ACCESS",   "id":5286307, "ctx":"conn11","msg":"Failed to authenticate","attr":{"client":"127.0.0.1:51310","isSpeculative":true,"isClusterMember":false,"mechanism":"SCRAM-SHA-256","user":"aacUser","db":"admin","error":"UserNotFound: Could not find user \\"aacUser\\" for db \\"admin\\"","result":11,"metrics":{"conversation_duration":{"micros":619,"summary":{"0":{"step":1,"step_total":2,"duration_micros":340}}}},"extraInfo":{}}}\n',
